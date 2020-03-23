@@ -1,0 +1,13 @@
+version: '3.2'
+services:
+  demo-app:
+    build: ./
+  cypress:
+    image: "cypress/included:4.0.1"
+    depends_on:
+      - demo-app
+    environment:
+      - CYPRESS_baseUrl=http://demo-app:8080
+    working_dir: /cypress
+    volumes:
+      - ./:/cypress
